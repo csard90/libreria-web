@@ -1,0 +1,63 @@
+<nav th:fragment="nav-bar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}"> LIBRERIA FUNCIONAL </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">                        
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Autores
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" th:href="@{/autor/lista}"> Listar </a></li>
+                        <li><a class="dropdown-item" th:href="@{/autor/crear}"> Cargar </a></li>                                
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Editoriales
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" th:href="@{/editorial/lista}"> Listar </a></li>
+                        <li><a class="dropdown-item" th:href="@{/editorial/crear}"> Cargar </a></li>                                
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Libros
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" th:href="@{/libro/lista}"> Listar </a></li>
+                        <li><a class="dropdown-item" th:href="@{/libro/crear}"> Cargar </a></li>                                
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Clientes
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" th:href="@{/cliente/lista}"> Listar </a></li>
+                        <li><a class="dropdown-item" th:href="@{/cliente/crear}"> Cargar </a></li>                                
+                    </ul>
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item dropdown">
+                    <a class="nav-link" th:href="@{/registro}" role="button" aria-expanded="false">
+                        Registro
+                    </a>                    
+                </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item dropdown">
+                    <a class="nav-link" th:href="@{/login}" role="button" aria-expanded="false">
+                        Log in
+                    </a>                    
+                </li>
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                    <a class="nav-link" th:href="@{/logout}" role="button" aria-expanded="false">
+                        Log out
+                    </a>                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

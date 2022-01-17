@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es-AR" xmlns:th="https://www.thymeleaf.org"> 
+    <head>
+        <title> Liberia Web - Lista de Editoriales </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/estilo-pagina.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav th:replace="/fragments/nav-bar :: nav-bar"> </nav>
+        <br>
+        <h1 align="center"> Lista de Editoriales </h1>        
+        <br>    
+        <p th:if="${editoriales.isEmpty}" th:text="'No hay editoriales para mostrar'"> </p>
+        <p th:if="${error != null}" th:text="${error}"> </p>
+        <p th:if="${validacion != null}" th:text="${validacion}"> </p>
+        <table class="table table-dark table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Nº</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Alta</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>                                             
+                <tr th:each=" p, iterator : ${editoriales}">                    
+                    <th scope="row" th:text="${iterator.index+1}"> </td>
+                    <td th:text="${p.id}"> </td>
+                    <td th:text="${p.nombre}"> </td>
+                    <td th:text="${p.alta}"> </td>                    
+                    <td>
+                        <button sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/editorial/eliminar}+'?id='+${p.id}"> Eliminar </a> </button>
+                        <button sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/editorial/crear}+'?id='+${p.id}"> Editar nombre </a> </button>
+                        <button sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/editorial/darBaja}+'?id='+${p.id}"> Dar de baja </a> </button>
+                        <button sec:authorize="hasRole('ROLE_ADMIN')"> <a th:href="@{/editorial/darAlta}+'?id='+${p.id}"> Dar de alta </a> </button>
+                    </td>                    
+                </tr>
+            </tbody>            
+        </table>
+    </body>
+</html>
